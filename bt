@@ -1,0 +1,106 @@
+#0  art::Mir2Lir::ScheduleLir (this=this@entry=0xb648f280,
+                               head_lir=head_lir@entry=0xb4c06b28,
+                               tail_lir=tail_lir@entry=0xb4c06cb8) at
+art/compiler/dex/quick/local_optimizations.cc:764
+#1  0xb67ab39a in art::Mir2Lir::ApplyLirListScheduling
+(this=this@entry=0xb648f280, head_lir=<optimized out>, tail_lir=0xb4c06cb8) at
+art/compiler/dex/quick/local_optimizations.cc:902
+#2  0xb67ab46a in art::Mir2Lir::ApplyLirScheduling (this=0xb648f280,
+                                                    head_lir=<optimized out>,
+                                                    tail_lir=0xb4c07190) at
+art/compiler/dex/quick/local_optimizations.cc:925
+#3  0xb67c7fc6 in art::Mir2Lir::MethodBlockCodeGen (this=this@entry=0xb648f280,
+                                                    bb=bb@entry=0xb4c04238) at
+art/compiler/dex/quick/mir_to_lir.cc:1213
+#4  0xb67c81d0 in art::Mir2Lir::MethodMIR2LIR (this=0xb648f280) at
+art/compiler/dex/quick/mir_to_lir.cc:1260
+#5  0xb67937ac in art::Mir2Lir::Materialize (this=0xb648f280) at
+art/compiler/dex/quick/codegen_util.cc:1111
+#6  0xb680c636 in art::CompileMethod (driver=..., compiler=0xb641b2b0,
+                                      code_item=<optimized out>,
+                                      access_flags=65537,
+                                      invoke_type=art::kDirect,
+                                      class_def_idx=class_def_idx@entry=0, 
+                                      method_idx=method_idx@entry=0,
+                                      class_loader=class_loader@entry=0x10007a,
+                                      dex_file=...,
+                                      llvm_compilation_unit=llvm_compilation_unit@entry=0x0)
+at art/compiler/dex/frontend.cc:840
+#7  0xb680cc90 in CompileOneMethod (compilation_unit=0x0, dex_file=...,
+                                    class_loader=0x10007a, method_idx=0,
+                                    class_def_idx=0, invoke_type=<optimized
+                                    out>, access_flags=<optimized out>, 
+                                    code_item=<optimized out>,
+                                    compiler=<optimized out>, driver=...)
+at art/compiler/dex/frontend.cc:880
+#8  ArtQuickCompileMethod (driver=..., code_item=<optimized out>,
+                           access_flags=<optimized out>, invoke_type=<optimized
+                           out>, class_def_idx=0, method_idx=0,
+                           class_loader=0x10007a, dex_file=...)
+at art/compiler/dex/frontend.cc:896
+#9  0xb682464c in art::CompilerDriver::CompileMethod
+(this=this@entry=0xb6407400, code_item=0xb4dbe24c, access_flags=65537,
+ invoke_type=art::kDirect, invoke_type@entry=8193,
+ class_def_idx=class_def_idx@entry=0, 
+ method_idx=method_idx@entry=0,
+ class_loader=class_loader@entry=0x10007a, dex_file=...,
+ dex_to_dex_compilation_level=dex_to_dex_compilation_level@entry=art::kOptimize)
+     at art/compiler/driver/compiler_driver.cc:2023
+#10 0xb6824dfe in art::CompilerDriver::CompileClass (manager=<optimized out>,
+                                                     class_def_index=<optimized
+                                                     out>) at
+art/compiler/driver/compiler_driver.cc:1968
+#11 0xb681ad5e in art::ParallelCompilationManager::ForAllClosure::Run
+(this=0xb641b180, self=0xb641cb00) at
+art/compiler/driver/compiler_driver.cc:1437
+#12 0xb6d98020 in art::ThreadPool::Wait (this=0xb648a400,
+                                         self=self@entry=0xb641cb00,
+                                         do_work=do_work@entry=true,
+                                         may_hold_locks=may_hold_locks@entry=false)
+at art/runtime/thread_pool.cc:182
+#13 0xb681e058 in art::ParallelCompilationManager::ForAll
+(this=this@entry=0xbe9f81e4, begin=begin@entry=0, end=<optimized out>, 
+ callback=callback@entry=0xb6824841
+ <art::CompilerDriver::CompileClass(art::ParallelCompilationManager const*,
+                                    unsigned int)>,
+ work_units=work_units@entry=1) at
+art/compiler/driver/compiler_driver.cc:1416
+#14 0xb681ea82 in CompileDexFile (timings=0xbe9f863c, thread_pool=0xb648a400,
+                                  dex_files=..., dex_file=...,
+                                  class_loader=0x10007a, this=0xb6407400) at
+art/compiler/driver/compiler_driver.cc:1996
+#15 art::CompilerDriver::Compile (this=this@entry=0xb6407400,
+                                  class_loader=class_loader@entry=0x10007a,
+                                  dex_files=...,
+                                  thread_pool=thread_pool@entry=0xb648a400,
+                                  timings=timings@entry=0xbe9f863c)
+at art/compiler/driver/compiler_driver.cc:1899
+#16 0xb6827c96 in art::CompilerDriver::CompileAll (this=this@entry=0xb6407400,
+                                                   class_loader=class_loader@entry=0x10007a,
+                                                   dex_files=...,
+                                                   timings=timings@entry=0xbe9f863c)
+at art/compiler/driver/compiler_driver.cc:512
+#17 0xb6f1e7c6 in art::Dex2Oat::CreateOatFile (this=this@entry=0xb6418178,
+                                               boot_image_option=...,
+                                               android_root=...,
+                                               is_host=is_host@entry=false,
+                                               dex_files=...,
+                                               oat_file=oat_file@entry=0xb6417118, 
+                                               oat_location=...,
+                                               bitcode_filename=...,
+                                               image=image@entry=false,
+                                               image_classes=...,
+                                               dump_stats=dump_stats@entry=false,
+                                               dump_passes=dump_passes@entry=false,
+                                               timings=...,
+                                               compiler_phases_timings=..., 
+                                               profile_file=...,
+                                               key_value_store=key_value_store@entry=0xb641b270)
+at art/dex2oat/dex2oat.cc:395
+#18 0xb6f209d2 in art::dex2oat (argc=<optimized out>, argv=<optimized out>) at
+art/dex2oat/dex2oat.cc:1411
+#19 0xb6e978ee in __libc_init (raw_args=0xbe9f8a80, onexit=<optimized out>,
+                               slingshot=0xb6f18455 <main(int, char**)>,
+                               structors=<optimized out>) at
+bionic/libc/bionic/libc_init_dynamic.cpp:113
+#20 0xb6f1851c in _start ()
